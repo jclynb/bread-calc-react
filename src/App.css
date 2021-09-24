@@ -1,0 +1,45 @@
+.App {
+  text-align: left
+  padding: 10px
+  font-family: 'Courier New',sans-serif;
+}
+
+
+table, th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: right;
+}
+
+
+body {
+    text-align: left
+    height: 100vh;
+    font-family: 'Courier New',sans-serif;
+    max-width: 700px;
+    margin: auto;
+    padding: 0 1em;
+}
+
+.input-group {
+  margin: 0.5em;
+  margin-bottom: 1.5em;
+}
+input[type="range"]{
+  background: gainsboro;
+  height: 3px;
+  margin-top: -5px;
+  display: block;
+  width: 100%;
+ }
+ 
+.input-group label {
+  margin-right: 0.5em;
+}
+.input-group input[type="range"] {
+  display: block;
+  width: 100%;
+  margin: .5em 0
+}
+
+
