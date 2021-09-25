@@ -24,6 +24,7 @@ function sourmath(flour, hydration, leaven, poolish, biga, ratioStarter, ratioBi
     biga_water = biga*(1/3)
   }
 
+//define the weights
 let poolish_half = poolish/2 //poolish is equal parts water and flour
 let flour_total = (flour + leaven_flour + poolish_half + biga_flour).toFixed(0)
 let salt = (flour_total * .02).toFixed(0)
@@ -31,20 +32,28 @@ let water = ((flour_total*(hydration/100)) - (leaven_water + poolish_half + biga
 let total_water = (flour_total*(hydration/100)).toFixed(0)
 let total_dough = (flour + salt + water + poolish + leaven + biga)
 
+//define the percentages
 let flour_percent = (flour/flour_total)*100
 let total_flour_percent = (flour_total/flour_total * 100)
+//salt
 let salt_percent = (salt/flour_total * 100).toFixed(0)
-let leaven_flour_perecent = (leaven_flour/flour_total * 100).toFixed(0)
+//preferment flour
+let leaven_flour_percent = (leaven_flour/flour_total * 100).toFixed(0)
 let poolish_flour_percent = (poolish_half/flour_total * 100).toFixed(0)
 let biga_flour_percent = (biga_flour/flour_total * 100).toFixed(0)
+//preferment water
 let leaven_water_percent = (leaven_water/flour_total *100).toFixed(0)
 let poolish_water_percent = (poolish_half/flour_total *100).toFixed(0)
 let biga_water_percent = (biga_water/flour_total * 100).toFixed(0)
+//water
 let water_percent = (water/flour_total * 100).toFixed(0)
 let total_water_percent = (total_water/flour_total * 100).toFixed(0)
+//dough
 let total_dough_percent = (total_dough/flour_total * 100).toFixed(0)
 
-let scale = (amount * total_dough)/(flour_percent + salt_percent + leaven_flour_perecent + poolish_flour_percent + biga_flour_percent + leaven_water_percent + poolish_water_percent + biga_water_percent + water_percent)
+if (amount > 1){
+
+let scale = (amount * total_dough)/(flour_percent + salt_percent + leaven_flour_percent + poolish_flour_percent + biga_flour_percent + leaven_water_percent + poolish_water_percent + biga_water_percent + water_percent)
 
 flour_total = (scale*total_flour_percent).toFixed(0)
 salt = (scale*salt_percent).toFixed(0)
@@ -54,11 +63,11 @@ biga = (scale*biga_flour_percent).toFixed(0)
 water =  (scale*water_percent).toFixed(0)
 total_water =  (scale*total_water_percent).toFixed(0)
 total_dough = (scale*total_dough_percent).toFixed(0)
-
+}
 
 let data_table = {total_flour: [`${flour_total} g`, `${total_flour_percent}%`], 
                   salt: [`${salt} g`, `${salt_percent}%`], 
-                  leaven: [`${leaven} g`, `${leaven_flour_perecent}%`],
+                  leaven: [`${leaven} g`, `${leaven_flour_percent}%`],
                   poolish: [`${poolish} g`, `${poolish_flour_percent}%`],
                   biga: [`${biga} g`, `${biga_flour_percent}%`],
                   water: [`${water} g`, `${water_percent}%`], 
