@@ -55,23 +55,25 @@ if (amount > 1){
 
 let scale = (amount * total_dough)/(flour_percent + salt_percent + leaven_flour_percent + poolish_flour_percent + biga_flour_percent + leaven_water_percent + poolish_water_percent + biga_water_percent + water_percent)
 
+flour = (scale*flour_percent)
 flour_total = (scale*total_flour_percent)
 salt = (scale*salt_percent)
-leaven = (scale*leaven_flour_percent)
-poolish = (scale*poolish_flour_percent)
-biga = (scale*biga_flour_percent)
+leaven = (scale*leaven_flour_percent + scale*leaven_water_percent)
+poolish = (scale*poolish_flour_percent + scale*poolish_water_percent)
+biga = (scale*biga_flour_percent + scale*biga_water_percent)
 water =  (scale*water_percent)
 total_water =  (scale*total_water_percent)
 total_dough = (scale*total_dough_percent)
 }
 
-let data_table = {total_flour: [flour_total, total_flour_percent], 
+let data_table = {total_flour: [flour_total, total_flour_percent],
+                  total_water: [total_water, total_water_percent],
+                  flour: [flour, flour_percent], 
                   salt: [salt, salt_percent], 
                   leaven: [leaven, leaven_flour_percent],
                   poolish: [poolish, poolish_flour_percent],
                   biga: [biga, biga_flour_percent],
                   water: [water, water_percent], 
-                  total_water: [total_water, total_water_percent],
                   total_dough: [total_dough, total_dough_percent]}
 
 return data_table;
@@ -253,6 +255,16 @@ export default function App() {
             <td>{Math.round(bread_table.total_flour[1])}%</td>
             </tr>
             <tr>
+            <td>Total Water</td>
+            <td>{Math.round(bread_table.total_water[0])}g</td>
+            <td>{Math.round(bread_table.total_water[1])}%</td>
+            </tr>
+            <tr>
+            <td>Flour</td>
+            <td>{Math.round(bread_table.flour[0])}g</td>
+            <td>{Math.round(bread_table.flour[1])}%</td>
+            </tr>
+            <tr>
             <td>Salt</td>
             <td>{Math.round(bread_table.salt[0])}g</td>
             <td>{Math.round(bread_table.salt[1])}%</td>
@@ -276,11 +288,6 @@ export default function App() {
             <td>Water</td>
             <td>{Math.round(bread_table.water[0])}g</td>
             <td>{Math.round(bread_table.water[1])}%</td>
-            </tr>
-            <tr>
-            <td>Total Water</td>
-            <td>{Math.round(bread_table.total_water[0])}g</td>
-            <td>{Math.round(bread_table.total_water[1])}%</td>
             </tr>
             <tr>
             <td>Total Dough</td>
