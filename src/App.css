@@ -5,8 +5,11 @@
 }
 
 
-table, th, td {
+table {
   width: 100%;
+}
+
+th, td {
   border-bottom: 1px solid #ddd;
   padding: 15px;
   text-align: right;
