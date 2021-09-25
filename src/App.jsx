@@ -231,7 +231,7 @@ export default function App() {
         <label for="amountRange">Choose the amount of loaves you want to bake</label>
         <input
           id="amountRange"
-          type="range"
+          type="number"
           min={0}
           max={1000}
           value={amount}
