@@ -250,15 +250,6 @@ export default function App() {
             <td>Percent</td>
           </tr>
           <tr>
-            <td>Total Flour</td>
-            <td>{Math.round(bread_table.total_flour[0])}g</td>
-            <td>{Math.round(bread_table.total_flour[1])}%</td>
-            </tr>
-            <tr>
-            <td>Total Water</td>
-            <td>{Math.round(bread_table.total_water[0])}g</td>
-            <td>{Math.round(bread_table.total_water[1])}%</td>
-            </tr>
             <tr>
             <td>Flour</td>
             <td>{Math.round(bread_table.flour[0])}g</td>
@@ -288,6 +279,15 @@ export default function App() {
             <td>Water</td>
             <td>{Math.round(bread_table.water[0])}g</td>
             <td>{Math.round(bread_table.water[1])}%</td>
+            </tr>
+            <td>Total Flour</td>
+            <td>{Math.round(bread_table.total_flour[0])}g</td>
+            <td>{Math.round(bread_table.total_flour[1])}%</td>
+            </tr>
+            <tr>
+            <td>Total Water</td>
+            <td>{Math.round(bread_table.total_water[0])}g</td>
+            <td>{Math.round(bread_table.total_water[1])}%</td>
             </tr>
             <tr>
             <td>Total Dough</td>
