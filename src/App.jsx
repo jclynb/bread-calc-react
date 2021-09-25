@@ -249,7 +249,6 @@ export default function App() {
             <td>Weight</td>
             <td>Percent</td>
           </tr>
-          <tr>
             <tr>
             <td>Flour</td>
             <td>{Math.round(bread_table.flour[0])}g</td>
@@ -280,6 +279,7 @@ export default function App() {
             <td>{Math.round(bread_table.water[0])}g</td>
             <td>{Math.round(bread_table.water[1])}%</td>
             </tr>
+            <tr>
             <td>Total Flour</td>
             <td>{Math.round(bread_table.total_flour[0])}g</td>
             <td>{Math.round(bread_table.total_flour[1])}%</td>
