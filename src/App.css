@@ -1,11 +1,12 @@
 .App {
-  text-align: left
-  padding: 10px
+  text-align: left;
+  padding: 10px;
   font-family: 'Courier New',sans-serif;
 }
 
 
 table, th, td {
+  width: 100%;
   border-bottom: 1px solid #ddd;
   padding: 15px;
   text-align: right;
@@ -13,7 +14,7 @@ table, th, td {
 
 
 body {
-    text-align: left
+    text-align: left;
     height: 100vh;
     font-family: 'Courier New',sans-serif;
     max-width: 700px;
@@ -39,7 +40,7 @@ input[type="range"]{
 .input-group input[type="range"] {
   display: block;
   width: 100%;
-  margin: .5em 0
+  margin: .5em 0;
 }
 
 
