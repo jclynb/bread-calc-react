@@ -26,53 +26,53 @@ function sourmath(flour, hydration, leaven, poolish, biga, ratioStarter, ratioBi
 
 //define the weights
 let poolish_half = poolish/2 //poolish is equal parts water and flour
-let flour_total = (flour + leaven_flour + poolish_half + biga_flour).toFixed(0)
-let salt = (flour_total * .02).toFixed(0)
-let water = ((flour_total*(hydration/100)) - (leaven_water + poolish_half + biga_water)).toFixed(0)
-let total_water = (flour_total*(hydration/100)).toFixed(0)
+let flour_total = (flour + leaven_flour + poolish_half + biga_flour)
+let salt = (flour_total * .02)
+let water = (flour_total*(hydration/100)) - (leaven_water + poolish_half + biga_water)
+let total_water = (flour_total*(hydration/100))
 let total_dough = (flour + salt + water + poolish + leaven + biga)
 
 //define the percentages
 let flour_percent = (flour/flour_total)*100
 let total_flour_percent = (flour_total/flour_total * 100)
 //salt
-let salt_percent = (salt/flour_total * 100).toFixed(0)
+let salt_percent = (salt/flour_total * 100)
 //preferment flour
-let leaven_flour_percent = (leaven_flour/flour_total * 100).toFixed(0)
-let poolish_flour_percent = (poolish_half/flour_total * 100).toFixed(0)
-let biga_flour_percent = (biga_flour/flour_total * 100).toFixed(0)
+let leaven_flour_percent = (leaven_flour/flour_total * 100)
+let poolish_flour_percent = (poolish_half/flour_total * 100)
+let biga_flour_percent = (biga_flour/flour_total * 100)
 //preferment water
-let leaven_water_percent = (leaven_water/flour_total *100).toFixed(0)
-let poolish_water_percent = (poolish_half/flour_total *100).toFixed(0)
-let biga_water_percent = (biga_water/flour_total * 100).toFixed(0)
+let leaven_water_percent = (leaven_water/flour_total *100)
+let poolish_water_percent = (poolish_half/flour_total *100)
+let biga_water_percent = (biga_water/flour_total * 100)
 //water
-let water_percent = (water/flour_total * 100).toFixed(0)
-let total_water_percent = (total_water/flour_total * 100).toFixed(0)
+let water_percent = (water/flour_total * 100)
+let total_water_percent = (total_water/flour_total * 100)
 //dough
-let total_dough_percent = (total_dough/flour_total * 100).toFixed(0)
+let total_dough_percent = (total_dough/flour_total * 100)
 
 if (amount > 1){
 
 let scale = (amount * total_dough)/(flour_percent + salt_percent + leaven_flour_percent + poolish_flour_percent + biga_flour_percent + leaven_water_percent + poolish_water_percent + biga_water_percent + water_percent)
 
-flour_total = (scale*total_flour_percent).toFixed(0)
-salt = (scale*salt_percent).toFixed(0)
-leaven = (scale*leaven_flour_percent).toFixed(0)
-poolish = (scale*poolish_flour_percent).toFixed(0)
-biga = (scale*biga_flour_percent).toFixed(0)
-water =  (scale*water_percent).toFixed(0)
-total_water =  (scale*total_water_percent).toFixed(0)
-total_dough = (scale*total_dough_percent).toFixed(0)
+flour_total = (scale*total_flour_percent)
+salt = (scale*salt_percent)
+leaven = (scale*leaven_flour_percent)
+poolish = (scale*poolish_flour_percent)
+biga = (scale*biga_flour_percent)
+water =  (scale*water_percent)
+total_water =  (scale*total_water_percent)
+total_dough = (scale*total_dough_percent)
 }
 
-let data_table = {total_flour: [`${flour_total} g`, `${total_flour_percent}%`], 
-                  salt: [`${salt} g`, `${salt_percent}%`], 
-                  leaven: [`${leaven} g`, `${leaven_flour_percent}%`],
-                  poolish: [`${poolish} g`, `${poolish_flour_percent}%`],
-                  biga: [`${biga} g`, `${biga_flour_percent}%`],
-                  water: [`${water} g`, `${water_percent}%`], 
-                  total_water: [`${total_water} g`, `${total_water_percent}%`],
-                  total_dough: [`${total_dough} g`, `${total_dough_percent}%`]}
+let data_table = {total_flour: [flour_total, total_flour_percent], 
+                  salt: [salt, salt_percent], 
+                  leaven: [leaven, leaven_flour_percent],
+                  poolish: [poolish, poolish_flour_percent],
+                  biga: [biga, biga_flour_percent],
+                  water: [water, water_percent], 
+                  total_water: [total_water, total_water_percent],
+                  total_dough: [total_dough, total_dough_percent]}
 
 return data_table;
 }
@@ -249,43 +249,43 @@ export default function App() {
           </tr>
           <tr>
             <td>Total Flour</td>
-            <td>{bread_table.total_flour[0]}</td>
-            <td>{bread_table.total_flour[1]}</td>
+            <td>{Math.round(bread_table.total_flour[0])}g</td>
+            <td>{Math.round(bread_table.total_flour[1])}%</td>
             </tr>
             <tr>
             <td>Salt</td>
-            <td>{bread_table.salt[0]}</td>
-            <td>{bread_table.salt[1]}</td>
+            <td>{Math.round(bread_table.salt[0])}g</td>
+            <td>{Math.round(bread_table.salt[1])}%</td>
             </tr>
             <tr>
             <td>Leaven</td>
-            <td>{bread_table.leaven[0]}</td>
-            <td>{bread_table.leaven[1]}</td>
+            <td>{Math.round(bread_table.leaven[0])}g</td>
+            <td>{Math.round(bread_table.leaven[1])}%</td>
             </tr>
             <tr>
             <td>Poolish</td>
-            <td>{bread_table.poolish[0]}</td>
-            <td>{bread_table.poolish[1]}</td>
+            <td>{Math.round(bread_table.poolish[0])}g</td>
+            <td>{Math.round(bread_table.poolish[1])}%</td>
             </tr>
             <tr>
             <td>Biga</td>
-            <td>{bread_table.biga[0]}</td>
-            <td>{bread_table.biga[1]}</td>
+            <td>{Math.round(bread_table.biga[0])}g</td>
+            <td>{Math.round(bread_table.biga[1])}%</td>
             </tr>
             <tr>
             <td>Water</td>
-            <td>{bread_table.water[0]}</td>
-            <td>{bread_table.water[1]}</td>
+            <td>{Math.round(bread_table.water[0])}g</td>
+            <td>{Math.round(bread_table.water[1])}%</td>
             </tr>
             <tr>
             <td>Total Water</td>
-            <td>{bread_table.total_water[0]}</td>
-            <td>{bread_table.total_water[1]}</td>
+            <td>{Math.round(bread_table.total_water[0])}g</td>
+            <td>{Math.round(bread_table.total_water[1])}%</td>
             </tr>
             <tr>
             <td>Total Dough</td>
-            <td>{bread_table.total_dough[0]}</td>
-            <td>{bread_table.total_dough[1]}</td>
+            <td>{Math.round(bread_table.total_dough[0])}g</td>
+            <td>{Math.round(bread_table.total_dough[1])}%</td>
           </tr>
         </table>
         <ul>
