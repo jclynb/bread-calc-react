@@ -198,32 +198,42 @@ export default function App() {
         <table>
           <tr>
             <td></td>
-            <td>Total Flour</td>
-            <td>Salt</td>
-            <td>Leaven</td>
-            <td>Poolish</td>
-            <td>Biga</td>
-            <td>Water</td>
-            <td>Total Water</td>
-          </tr>
-          <tr>
             <td>Weight</td>
-            <td>{bread_table.total_flour[0]}</td>
-            <td>{bread_table.salt[0]}</td>
-            <td>{bread_table.leaven[0]}</td>
-            <td>{bread_table.poolish[0]}</td>
-            <td>{bread_table.biga[0]}</td>
-            <td>{bread_table.water[0]}</td>
-            <td>{bread_table.total_water[0]}</td>
+            <td>Percent</td>
           </tr>
           <tr>
-            <td>Percent</td>
+            <td>Total Flour</td>
+            <td>{bread_table.total_flour[0]}</td>
             <td>{bread_table.total_flour[1]}</td>
+            </tr>
+            <tr>
+            <td>Salt</td>
+            <td>{bread_table.salt[0]}</td>
             <td>{bread_table.salt[1]}</td>
+            </tr>
+            <tr>
+            <td>Leaven</td>
+            <td>{bread_table.leaven[0]}</td>
             <td>{bread_table.leaven[1]}</td>
+            </tr>
+            <tr>
+            <td>Poolish</td>
+            <td>{bread_table.poolish[0]}</td>
             <td>{bread_table.poolish[1]}</td>
+            </tr>
+            <tr>
+            <td>Biga</td>
+            <td>{bread_table.biga[0]}</td>
             <td>{bread_table.biga[1]}</td>
+            </tr>
+            <tr>
+            <td>Water</td>
+            <td>{bread_table.water[0]}</td>
             <td>{bread_table.water[1]}</td>
+            </tr>
+            <tr>
+            <td>Total Water</td>
+            <td>{bread_table.total_water[0]}</td>
             <td>{bread_table.total_water[1]}</td>
           </tr>
         </table>
