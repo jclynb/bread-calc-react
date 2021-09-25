@@ -64,7 +64,11 @@ export default function App() {
     return (
       <div className="App">       
         <h1>Baker's Percentage Calculator</h1>
-        <img src={crumbs} width={500}/> 
+        <img src={crumbs} style={{
+          width= '100%',
+          maxwidth = '500px'
+        }}
+        />
         <h3> A Web App by <a href="http://jclyn.info">Jaclyn Baughman</a> </h3> 
         <p> 🍞 Let's make bread! All we need is flour, water, salt, and yeast, plus some arithmetic. To use this calculator, choose how much flour you want to use, your hydration target, and your amount of preferment.</p>
         <h2>Calculator</h2>
