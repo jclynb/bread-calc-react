@@ -65,8 +65,8 @@ export default function App() {
       <div className="App">       
         <h1>Baker's Percentage Calculator</h1>
         <img src={crumbs} style={{
-          width= '100%',
-          maxwidth = '500px'
+          width: '100%',
+          maxwidth: '500px'
         }}
         />
         <h3> A Web App by <a href="http://jclyn.info">Jaclyn Baughman</a> </h3> 
