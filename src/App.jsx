@@ -3,81 +3,10 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import "./App.css"
 import crumbs from './crumbs.jpg';
+import sourMath  from "./sourMath.jsx";
+import  enrichedMath  from "./enrichedMath.jsx";
+import { SelfHidingRow } from "./SelfHidingRow.jsx";
 
-function sourmath(flour, hydration, leaven, poolish, biga, ratioStarter, ratioBiga, amount){
-  let leaven_flour = leaven/2 
-  let leaven_water = leaven/2 
-  let biga_flour
-  let biga_water
-  if (ratioStarter == "2:1") {
-    leaven_flour = leaven*(2/3) 
-    leaven_water = leaven*(1/3)
-  } else if (ratioStarter == "3:2") {
-    leaven_flour = leaven*(0.6)
-    leaven_water = leaven*(0.4)
-  } 
-  if (ratioBiga == "3:2") {
-    biga_flour = biga*(0.6) 
-    biga_water = biga*(0.4)
-  } else {
-    biga_flour = biga*(2/3) 
-    biga_water = biga*(1/3)
-  }
-
-//define the weights
-let poolish_half = poolish/2 //poolish is equal parts water and flour
-let flour_total = (flour + leaven_flour + poolish_half + biga_flour)
-let salt = (flour_total * .02)
-let water = (flour_total*(hydration/100)) - (leaven_water + poolish_half + biga_water)
-let total_water = (flour_total*(hydration/100))
-let total_dough = (flour + salt + water + poolish + leaven + biga)
-
-//define the percentages
-let flour_percent = (flour/flour_total)*100
-let total_flour_percent = (flour_total/flour_total * 100)
-//salt
-let salt_percent = (salt/flour_total * 100)
-//preferment flour
-let leaven_flour_percent = (leaven_flour/flour_total * 100)
-let poolish_flour_percent = (poolish_half/flour_total * 100)
-let biga_flour_percent = (biga_flour/flour_total * 100)
-//preferment water
-let leaven_water_percent = (leaven_water/flour_total *100)
-let poolish_water_percent = (poolish_half/flour_total *100)
-let biga_water_percent = (biga_water/flour_total * 100)
-//water
-let water_percent = (water/flour_total * 100)
-let total_water_percent = (total_water/flour_total * 100)
-//dough
-let total_dough_percent = (total_dough/flour_total * 100)
-
-if (amount > 1){
-
-let scale = (amount * total_dough)/(flour_percent + salt_percent + leaven_flour_percent + poolish_flour_percent + biga_flour_percent + leaven_water_percent + poolish_water_percent + biga_water_percent + water_percent)
-
-flour = (scale*flour_percent)
-flour_total = (scale*total_flour_percent)
-salt = (scale*salt_percent)
-leaven = (scale*leaven_flour_percent + scale*leaven_water_percent)
-poolish = (scale*poolish_flour_percent + scale*poolish_water_percent)
-biga = (scale*biga_flour_percent + scale*biga_water_percent)
-water =  (scale*water_percent)
-total_water =  (scale*total_water_percent)
-total_dough = (scale*total_dough_percent)
-}
-
-let data_table = {total_flour: [flour_total, total_flour_percent],
-                  total_water: [total_water, total_water_percent],
-                  flour: [flour, flour_percent], 
-                  salt: [salt, salt_percent], 
-                  leaven: [leaven, leaven_flour_percent],
-                  poolish: [poolish, poolish_flour_percent],
-                  biga: [biga, biga_flour_percent],
-                  water: [water, water_percent], 
-                  total_dough: [total_dough, total_dough_percent]}
-
-return data_table;
-}
 
 
 export default function App() {
@@ -88,8 +17,22 @@ export default function App() {
     const [biga, setBiga] = useState(0);
     const [ratioStarter, setRatioStarter] = useState(null);
     const [ratioBiga, setRatioBiga] = useState(null);
+    const [yeast, setYeast] = useState(0);
+    const [salt, setSalt] = useState(0);
+    const [sugar, setSugar] = useState(0);
+    const [milk, setMilk] = useState(0);
+    const [egg, setEgg] = useState(0);
+    const [yolk, setYolk] = useState(0);
+    const [white, setWhite] = useState(0);
+    const [butter, setButter] = useState(0);
+    const [oil, setOil] = useState(0);
+    const [water, setWater] = useState(0);
     const [amount, setAmount] = useState(1);
-    const bread_table = sourmath(flour, hydration, leaven, poolish, biga, ratioStarter, ratioBiga, amount);
+    const [breadtype, setBreadType] = useState(null);
+    const bread_options = ["Enriched", "Lean"];
+    const isEnriched = //when breadtype = "Enriched" use enrichedMath
+    const bread_table = isEnriched ? enrichedMath(flour, water, salt, sugar, leaven, poolish, biga, ratioStarter, ratioBiga, yeast, milk, egg, yolk, white, butter, oil, amount)
+    :  sourMath(flour, hydration, leaven, poolish, biga, ratioStarter, ratioBiga, amount);
     const ratio_options = ["1:1", "3:2", "2:1"];
     return (
       <div className="App">       
@@ -103,6 +46,12 @@ export default function App() {
         <p> 🍞 Let's make bread! All we need is flour, water, salt, and yeast, plus some arithmetic. To use this calculator, choose how much flour you want to use, your hydration target, and your amount of preferment.</p>
         <h2>Calculator</h2>
         <div className="input-group">
+        <Dropdown
+           options={bread_options}
+           placeholder="What kind of dough are you making?"
+           value={breadtype}
+           onChange={(options) => setBreadType(options.value)}
+          />
           <label for="flourSlider">Flour (g)</label>
           <input
             id="flourSlider"
@@ -122,11 +71,11 @@ export default function App() {
           value={flour}
           onChange={(e) => {
             setFlour(e.target.valueAsNumber);
-          }}
-        />
+            }}
+          />
         </div>
         <div className="input-group">
-        <label for="hydrationSlider">Hydration Percentage</label>
+          <label for="hydrationSlider">Hydration Percentage</label>
           <input
             id="hydrationSlider"
             type="number"
@@ -145,8 +94,8 @@ export default function App() {
           value={hydration}
           onChange={(e) => {
             setHydration(e.target.valueAsNumber);
-          }}
-        />
+            }}
+          />
         </div>
         <div className="input-group">
         <label for="leavenSlider">Leaven/Starter (g) (flour, water, natural yeast)</label>
@@ -154,7 +103,7 @@ export default function App() {
             id="leavenSlider"
             type="number"
             min={0}
-            max={500}
+            max={1000}
             value={leaven}
             onChange={(e) => {
               setLeaven(e.target.valueAsNumber);
@@ -165,17 +114,17 @@ export default function App() {
            placeholder="Choose your ratio of flour:water (standard is 1:1)"
            value={ratioStarter}
            onChange={(options) => setRatioStarter(options.value)}
-        />
+          />
           <input
           id="leavenRange"
           type="range"
           min={0}
-          max={500}
+          max={1000}
           value={leaven}
           onChange={(e) => {
             setLeaven(e.target.valueAsNumber);
           }}
-        />
+         />
         </div>
         <div className="input-group">
         <label for="poolishSlider">Poolish (g) (1:1 ratio of flour and water + commercial yeast) </label>
@@ -183,7 +132,7 @@ export default function App() {
             id="poolishSlider"
             type="number"
             min={0}
-            max={500}
+            max={1000}
             value={poolish}
             onChange={(e) => {
               setPoolish(e.target.valueAsNumber);
@@ -193,7 +142,7 @@ export default function App() {
           id="poolishRange"
           type="range"
           min={0}
-          max={500}
+          max={1000}
           value={poolish}
           onChange={(e) => {
             setPoolish(e.target.valueAsNumber);
@@ -230,6 +179,29 @@ export default function App() {
           />
         </div>
         <div className="input-group">
+          <label for="yeastSlider">Active Dry Yeast (g)</label>
+          <input
+            id="yeastSlider"
+            type="number"
+            min={0}
+            max={100}
+            value={yeast}
+            onChange={(e) => {
+              setYeast(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="yeastRange"
+          type="range"
+          min={0}
+          max={100}
+          value={yeast}
+          onChange={(e) => {
+            setYeast(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
         <label for="amountRange">Choose the amount of loaves you want to bake</label>
         <input
           id="amountRange"
@@ -241,59 +213,239 @@ export default function App() {
             setAmount(e.target.valueAsNumber);
           }}
           />
-
         </div>
+        <div className="input-group">
+          <label for="milkSlider">Milk (g)</label>
+          <input
+            id="milkSlider"
+            type="number"
+            min={0}
+            max={1000}
+            value={milk}
+            onChange={(e) => {
+              setMilk(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="milkRange"
+          type="range"
+          min={0}
+          max={1000}
+          value={milk}
+          onChange={(e) => {
+            setMilk(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="saltSlider">Salt (g)</label>
+          <input
+            id="saltSlider"
+            type="number"
+            min={0}
+            max={1000}
+            value={salt}
+            onChange={(e) => {
+              setSalt(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="saltRange"
+          type="range"
+          min={0}
+          max={1000}
+          value={salt}
+          onChange={(e) => {
+            setSalt(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="sugarSlider">Sugar (g)</label>
+          <input
+            id="sugarSlider"
+            type="number"
+            min={0}
+            max={1000}
+            value={sugar}
+            onChange={(e) => {
+              setSugar(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="sugarRange"
+          type="range"
+          min={0}
+          max={1000}
+          value={sugar}
+          onChange={(e) => {
+            setSugar(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="waterSlider">Water (g)</label>
+          <input
+            id="waterSlider"
+            type="number"
+            min={0}
+            max={1000}
+            value={water}
+            onChange={(e) => {
+              setWater(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="waterRange"
+          type="range"
+          min={0}
+          max={1000}
+          value={water}
+          onChange={(e) => {
+            setWater(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="eggSlider">Whole Egg (#)</label>
+          <input
+            id="eggSlider"
+            type="number"
+            min={0}
+            max={100}
+            value={egg}
+            onChange={(e) => {
+              setEgg(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="eggRange"
+          type="range"
+          min={0}
+          max={100}
+          value={egg}
+          onChange={(e) => {
+            setEgg(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="yolkSlider">Egg Yolk (#)</label>
+          <input
+            id="yolkSlider"
+            type="number"
+            min={0}
+            max={100}
+            value={yolk}
+            onChange={(e) => {
+              setYolk(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="yolkRange"
+          type="range"
+          min={0}
+          max={100}
+          value={yolk}
+          onChange={(e) => {
+            setYolk(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="whiteSlider">Egg White (#)</label>
+          <input
+            id="whiteSlider"
+            type="number"
+            min={0}
+            max={100}
+            value={white}
+            onChange={(e) => {
+              setWhite(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="whiteRange"
+          type="range"
+          min={0}
+          max={100}
+          value={white}
+          onChange={(e) => {
+            setWhite(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="butterSlider">Unsalted Butter (g)</label>
+          <input
+            id="butterSlider"
+            type="number"
+            min={0}
+            max={1000}
+            value={butter}
+            onChange={(e) => {
+              setButter(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="butterRange"
+          type="range"
+          min={0}
+          max={1000}
+          value={butter}
+          onChange={(e) => {
+            setButter(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="oilSlider">Extra-Virgin Olive Oil (g)</label>
+          <input
+            id="oilSlider"
+            type="number"
+            min={0}
+            max={1000}
+            value={oil}
+            onChange={(e) => {
+              setOil(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="oilRange"
+          type="range"
+          min={0}
+          max={1000}
+          value={oil}
+          onChange={(e) => {
+            setOil(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+
         <table>
           <tr>
             <td></td>
             <td>Weight</td>
             <td>Percent</td>
           </tr>
-            <tr>
-            <td>Flour</td>
-            <td>{Math.round(bread_table.flour[0])}g</td>
-            <td>{Math.round(bread_table.flour[1])}%</td>
-            </tr>
-            <tr>
-            <td>Salt</td>
-            <td>{Math.round(bread_table.salt[0])}g</td>
-            <td>{Math.round(bread_table.salt[1])}%</td>
-            </tr>
-            <tr>
-            <td>Leaven</td>
-            <td>{Math.round(bread_table.leaven[0])}g</td>
-            <td>{Math.round(bread_table.leaven[1])}%</td>
-            </tr>
-            <tr>
-            <td>Poolish</td>
-            <td>{Math.round(bread_table.poolish[0])}g</td>
-            <td>{Math.round(bread_table.poolish[1])}%</td>
-            </tr>
-            <tr>
-            <td>Biga</td>
-            <td>{Math.round(bread_table.biga[0])}g</td>
-            <td>{Math.round(bread_table.biga[1])}%</td>
-            </tr>
-            <tr>
-            <td>Water</td>
-            <td>{Math.round(bread_table.water[0])}g</td>
-            <td>{Math.round(bread_table.water[1])}%</td>
-            </tr>
-            <tr>
-            <td>Total Flour</td>
-            <td>{Math.round(bread_table.total_flour[0])}g</td>
-            <td>{Math.round(bread_table.total_flour[1])}%</td>
-            </tr>
-            <tr>
-            <td>Total Water</td>
-            <td>{Math.round(bread_table.total_water[0])}g</td>
-            <td>{Math.round(bread_table.total_water[1])}%</td>
-            </tr>
-            <tr>
-            <td>Total Dough</td>
-            <td>{Math.round(bread_table.total_dough[0])}g</td>
-            <td>{Math.round(bread_table.total_dough[1])}%</td>
-          </tr>
+          <SelfHidingRow title='Flour' unit='g' dataTuple={bread_table.flour} />
+          <SelfHidingRow title='Salt' unit='g' dataTuple={bread_table.salt} />
+          <SelfHidingRow title='Sugar' unit='g' dataTuple={bread_table.sugar} />
+          <SelfHidingRow title='Leaven' unit='g' dataTuple={bread_table.leaven} />
+          <SelfHidingRow title='Poolish' unit='g' dataTuple={bread_table.poolish} />
+          <SelfHidingRow title='Biga' unit='g' dataTuple={bread_table.biga} />
+          <SelfHidingRow title='Yeast' unit='g' dataTuple={bread_table.yeast} />
+          <SelfHidingRow title='Milk' unit='g' dataTuple={bread_table.milk} />
+          <SelfHidingRow title='Whole Egg' unit='#' dataTuple={bread_table.egg} />
+          <SelfHidingRow title='Egg Yolk' unit='#' dataTuple={bread_table.yolk} />
+          <SelfHidingRow title='Egg White' unit='#' dataTuple={bread_table.white} />
+          <SelfHidingRow title='Unsalted Butter' unit='g' dataTuple={bread_table.butter} />
+          <SelfHidingRow title='Extra-virgin Olive Oil' unit='g' dataTuple={bread_table.oil} />
+          <SelfHidingRow title='Water' unit='g' dataTuple={bread_table.water} />
+          <SelfHidingRow title='Total Water' unit='g' dataTuple={bread_table.total_water} />
+          <SelfHidingRow title='Total Water / Hydration Percent' unit='g' dataTuple={bread_table.hydro} />
+          <SelfHidingRow title='Total Flour' unit='g' dataTuple={bread_table.total_flour} />
+          <SelfHidingRow title='Total Dough' unit='g' dataTuple={bread_table.total_dough} />
         </table>
         <ul>
         <li> The percentage for the leaven/starter/poolish/biga is the amount of flour in the preferment mixture divided by the total flour in the recipe. If you aren't using any, put 0!</li>
