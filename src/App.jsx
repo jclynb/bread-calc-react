@@ -447,6 +447,9 @@ export default function App() {
         </div>
         </>
         }
+
+        {(breadtype === "Lean" || breadtype === "Enriched") &&
+        <>
         <div className="input-group">
         <label for="amountRange">Choose the number of loaves you want to bake</label>
         <input
@@ -460,7 +463,6 @@ export default function App() {
           }}
           />
         </div>
-
         <table>
           <tr>
             <td></td>
@@ -499,6 +501,9 @@ export default function App() {
           <li> <strong> Why is flour always 100%?:</strong> Bakers use flour as the standard weight to divide the other ingredients against. This means our total flour will always be 100%, and we will always divide by that number. So a bread with 600g of water and 1000g of flour will be 60% hydration. With prefermented doughs, we add a yeasty mixture (starter/biga/poolish) that has its own water-to-flour ratio. This addition to the dough affects our hydration percentage, and needs to be added to our total water and total flour calculation.</li>
         </ul>
         <h3> A web app by <a href="https://www.notion.so/Meet-Jaclyn-3376e41006724ae29445f3733c96c4eb">Jaclyn Baughman</a> </h3> 
+        </>
+       }
       </div>
-    );
+      
+       );
     }
