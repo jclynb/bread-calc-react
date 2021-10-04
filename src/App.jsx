@@ -40,7 +40,7 @@ export default function App() {
         <div className="input-group">
         <Dropdown
            options={bread_options}
-           placeholder="Lean for flour, salt, water, yeast, Enriched if adding butter, milk, or eggs."
+           placeholder="Lean for flour, salt, water, yeast, Enriched if adding butter, milk, and/or eggs."
            value={breadtype}
            onChange={(options) => setBreadType(options.value)}
           />
@@ -130,7 +130,7 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
-          <label for="hydroprefermentSlider"> + Preferment Hydration (%) </label>
+          <label for="hydroprefermentSlider"> &amp; Preferment Hydration (%) </label>
             <input
             id="hydroprefermentSlider"
             type="number"
@@ -216,7 +216,7 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
-          <label for="hydroprefermentSlider"> + Preferment Hydration (%) </label>
+          <label for="hydroprefermentSlider"> &amp; Preferment Hydration (%) </label>
           <input
           id="hydroprefermentRange"
            type="number"
@@ -498,7 +498,7 @@ export default function App() {
           <br></br>
           <li> <strong> Why is flour always 100%?:</strong> Bakers use flour as the standard weight to divide the other ingredients against. This means our total flour will always be 100%, and we will always divide by that number. So a bread with 600g of water and 1000g of flour will be 60% hydration. With prefermented doughs, we add a yeasty mixture (starter/biga/poolish) that has its own water-to-flour ratio. This addition to the dough affects our hydration percentage, and needs to be added to our total water and total flour calculation.</li>
         </ul>
-        <h3> A Web App by <a href="https://www.notion.so/Meet-Jaclyn-3376e41006724ae29445f3733c96c4eb">Jaclyn Baughman</a> </h3> 
+        <h3> A web app by <a href="https://www.notion.so/Meet-Jaclyn-3376e41006724ae29445f3733c96c4eb">Jaclyn Baughman</a> </h3> 
       </div>
     );
     }
