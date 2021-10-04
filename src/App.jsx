@@ -130,7 +130,7 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
-          <label for="hydroprefermentSlider"> + Hydration (%) </label>
+          <label for="hydroprefermentSlider"> + Preferment Hydration (%) </label>
             <input
             id="hydroprefermentSlider"
             type="number"
@@ -216,7 +216,7 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
-          <label for="hydroprefermentSlider"> + Hydration (%) </label>
+          <label for="hydroprefermentSlider"> + Preferment Hydration (%) </label>
           <input
           id="hydroprefermentRange"
            type="number"
