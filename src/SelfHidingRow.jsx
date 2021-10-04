@@ -1,4 +1,4 @@
-export const SelfHidingRow = ({ dataTuple, title, unit }) => dataTuple[0] > 0 || dataTuple[0] == undefined  && (
+export const SelfHidingRow = ({ dataTuple, title, unit }) => (dataTuple && dataTuple[0] > 0) ? (
     <tbody>
     <tr>
       <td>{title}</td>
@@ -6,4 +6,4 @@ export const SelfHidingRow = ({ dataTuple, title, unit }) => dataTuple[0] > 0 ||
       <td>{Math.round(dataTuple[1])}%</td>
     </tr>
     </tbody>
-  );
+  ) : null ;

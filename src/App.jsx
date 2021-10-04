@@ -3,8 +3,8 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import "./App.css"
 import crumbs from './crumbs.jpg';
-import sourMath  from "./sourMath.jsx";
-import  enrichedMath  from "./enrichedMath.jsx";
+import sourMath  from "./sourMath.js";
+import  enrichedMath  from "./enrichedMath.js";
 import { SelfHidingRow } from "./SelfHidingRow.jsx";
 
 
@@ -12,11 +12,8 @@ import { SelfHidingRow } from "./SelfHidingRow.jsx";
 export default function App() {
     const [flour, setFlour] = useState(200);
     const [hydration, setHydration] = useState(10);
-    const [leaven, setLeaven] = useState(0);
-    const [poolish, setPoolish] = useState(0);
-    const [biga, setBiga] = useState(0);
-    const [ratioStarter, setRatioStarter] = useState(null);
-    const [ratioBiga, setRatioBiga] = useState(null);
+    const [preferment, setPreferment] = useState(0);
+    const [hydroPreferment, setHydroPreferment] = useState(null);
     const [yeast, setYeast] = useState(0);
     const [salt, setSalt] = useState(0);
     const [sugar, setSugar] = useState(0);
@@ -30,10 +27,11 @@ export default function App() {
     const [amount, setAmount] = useState(1);
     const [breadtype, setBreadType] = useState(null);
     const bread_options = ["Enriched", "Lean"];
-    const isEnriched = //when breadtype = "Enriched" use enrichedMath
-    const bread_table = isEnriched ? enrichedMath(flour, water, salt, sugar, leaven, poolish, biga, ratioStarter, ratioBiga, yeast, milk, egg, yolk, white, butter, oil, amount)
-    :  sourMath(flour, hydration, leaven, poolish, biga, ratioStarter, ratioBiga, amount);
-    const ratio_options = ["1:1", "3:2", "2:1"];
+    const isEnriched = breadtype === "Enriched";
+    const bread_table = isEnriched 
+    ? enrichedMath(flour, water, salt, sugar, preferment, hydroPreferment, yeast, milk, egg, yolk, white, butter, oil, amount)
+    :  sourMath(flour, hydration, preferment, hydroPreferment, amount);
+
     return (
       <div className="App">       
         <h1>Baker's Percentage Calculator</h1>
@@ -52,6 +50,10 @@ export default function App() {
            value={breadtype}
            onChange={(options) => setBreadType(options.value)}
           />
+          </div>
+
+
+          <div className="input-group">
           <label for="flourSlider">Flour (g)</label>
           <input
             id="flourSlider"
@@ -61,7 +63,7 @@ export default function App() {
             value={flour}
             onChange={(e) => {
               setFlour(e.target.valueAsNumber);
-            }}
+             }}
           />
           <input
           id="flourRange"
@@ -75,6 +77,7 @@ export default function App() {
           />
         </div>
         <div className="input-group">
+          {breadtype == "Lean" && <>
           <label for="hydrationSlider">Hydration Percentage</label>
           <input
             id="hydrationSlider"
@@ -96,88 +99,44 @@ export default function App() {
             setHydration(e.target.valueAsNumber);
             }}
           />
+          </>
+        }
+                
         </div>
         <div className="input-group">
-        <label for="leavenSlider">Leaven/Starter (g) (flour, water, natural yeast)</label>
+        <label for="prefermentSlider">Preferment + Hydration (g) (mixture of flour, water,  yeast)</label>
           <input
-            id="leavenSlider"
+            id="prefermentSlider"
             type="number"
             min={0}
-            max={1000}
-            value={leaven}
+            max={2000}
+            value={preferment}
             onChange={(e) => {
-              setLeaven(e.target.valueAsNumber);
+              setPreferment(e.target.valueAsNumber);
             }}
           />
-          <Dropdown
-           options={ratio_options}
-           placeholder="Choose your ratio of flour:water (standard is 1:1)"
-           value={ratioStarter}
-           onChange={(options) => setRatioStarter(options.value)}
+          <input
+          id="hydroprefermentRange"
+           type="number"
+           min={0}
+           max={120}
+           placeholder="Hydration"
+           value={hydroPreferment}
+           onChange={(e) => setHydroPreferment(e.target.valueAsNumber)}
           />
           <input
-          id="leavenRange"
-          type="range"
-          min={0}
-          max={1000}
-          value={leaven}
-          onChange={(e) => {
-            setLeaven(e.target.valueAsNumber);
-          }}
+            id="prefermentRange"
+            type="range"
+            min={0}
+            max={1000}
+            value={preferment}
+            onChange={(e) => {
+              setPreferment(e.target.valueAsNumber);
+            }}
          />
         </div>
-        <div className="input-group">
-        <label for="poolishSlider">Poolish (g) (1:1 ratio of flour and water + commercial yeast) </label>
-          <input
-            id="poolishSlider"
-            type="number"
-            min={0}
-            max={1000}
-            value={poolish}
-            onChange={(e) => {
-              setPoolish(e.target.valueAsNumber);
-            }}
-          />
-          <input
-          id="poolishRange"
-          type="range"
-          min={0}
-          max={1000}
-          value={poolish}
-          onChange={(e) => {
-            setPoolish(e.target.valueAsNumber);
-          }}
-          />
-        </div>
-        <div className="input-group">
-        <label for="bigaSlider">Biga (g) (flour, water, commercial yeast) </label>
-          <input
-            id="bigaSlider"
-            type="number"
-            min={0}
-            max={1500}
-            value={biga}
-            onChange={(e) => {
-              setBiga(e.target.valueAsNumber);
-            }}
-          />
-          <Dropdown
-          options={ratio_options}
-          placeholder="Choose your ratio of flour:water (standard is 2:1)"
-          value={ratioBiga}
-          onChange={(options) => setRatioBiga(options.value)}
-        />
-          <input
-          id="poolishBiga"
-          type="range"
-          min={0}
-          max={1500}
-          value={biga}
-          onChange={(e) => {
-            setBiga(e.target.valueAsNumber);
-          }}
-          />
-        </div>
+      
+        {breadtype == "Enriched" && <>
         <div className="input-group">
           <label for="yeastSlider">Active Dry Yeast (g)</label>
           <input
@@ -199,19 +158,6 @@ export default function App() {
           onChange={(e) => {
             setYeast(e.target.valueAsNumber);
             }}
-          />
-        </div>
-        <div className="input-group">
-        <label for="amountRange">Choose the amount of loaves you want to bake</label>
-        <input
-          id="amountRange"
-          type="number"
-          min={0}
-          max={1000}
-          value={amount}
-          onChange={(e) => {
-            setAmount(e.target.valueAsNumber);
-          }}
           />
         </div>
         <div className="input-group">
@@ -421,6 +367,21 @@ export default function App() {
             }}
           />
         </div>
+        </>
+        }
+        <div className="input-group">
+        <label for="amountRange">Choose the amount of loaves you want to bake</label>
+        <input
+          id="amountRange"
+          type="number"
+          min={0}
+          max={1000}
+          value={amount}
+          onChange={(e) => {
+            setAmount(e.target.valueAsNumber);
+          }}
+          />
+        </div>
 
         <table>
           <tr>
@@ -431,9 +392,7 @@ export default function App() {
           <SelfHidingRow title='Flour' unit='g' dataTuple={bread_table.flour} />
           <SelfHidingRow title='Salt' unit='g' dataTuple={bread_table.salt} />
           <SelfHidingRow title='Sugar' unit='g' dataTuple={bread_table.sugar} />
-          <SelfHidingRow title='Leaven' unit='g' dataTuple={bread_table.leaven} />
-          <SelfHidingRow title='Poolish' unit='g' dataTuple={bread_table.poolish} />
-          <SelfHidingRow title='Biga' unit='g' dataTuple={bread_table.biga} />
+          <SelfHidingRow title='Preferment' unit='g' dataTuple={bread_table.preferment} />
           <SelfHidingRow title='Yeast' unit='g' dataTuple={bread_table.yeast} />
           <SelfHidingRow title='Milk' unit='g' dataTuple={bread_table.milk} />
           <SelfHidingRow title='Whole Egg' unit='#' dataTuple={bread_table.egg} />
