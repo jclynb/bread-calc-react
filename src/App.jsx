@@ -119,7 +119,7 @@ export default function App() {
           />
         </div>
         <div className="input-group">
-        <label for="prefermentSlider">Preferment (g) + Hydration (%) (mixture of flour, water,  yeast)</label>
+        <label for="prefermentSlider">Preferment (g)</label>
           <input
             id="prefermentSlider"
             type="number"
@@ -130,6 +130,7 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
+          <label for="hydroprefermentSlider"> + Hydration (%) </label>
             <input
             id="hydroprefermentSlider"
             type="number"
@@ -141,6 +142,7 @@ export default function App() {
               setHydroPreferment(e.target.valueAsNumber);
             }}
           />
+          <label> (mixture of flour, water,  yeast)</label>
           <input
             id="prefermentRange"
             type="range"
@@ -203,7 +205,7 @@ export default function App() {
           />
         </div>
         <div className="input-group">
-        <label for="prefermentSlider">Preferment (g) + Hydration (%) (mixture of flour, water,  yeast)</label>
+        <label for="prefermentSlider">Preferment (g)</label>
           <input
             id="prefermentSlider"
             type="number"
@@ -214,6 +216,7 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
+          <label for="hydroprefermentSlider"> + Hydration (%) </label>
           <input
           id="hydroprefermentRange"
            type="number"
@@ -223,6 +226,7 @@ export default function App() {
            value={hydroPreferment}
            onChange={(e) => setHydroPreferment(e.target.valueAsNumber)}
           />
+          <label> (mixture of flour, water,  yeast)</label>
           <input
             id="prefermentRange"
             type="range"
@@ -476,7 +480,7 @@ export default function App() {
           <SelfHidingRow title='Extra-virgin Olive Oil' unit='g' dataTuple={bread_table.oil} />
           <SelfHidingRow title='Water' unit='g' dataTuple={bread_table.water} />
           <SelfHidingRow title='Total Water' unit='g' dataTuple={bread_table.total_water} />
-          <SelfHidingRow title='Total Water / Hydration Percent' unit='g' dataTuple={bread_table.hydro} />
+          <SelfHidingRow title='Total Water and Hydration Percent' unit='g' dataTuple={bread_table.hydro} />
           <SelfHidingRow title='Total Flour' unit='g' dataTuple={bread_table.total_flour} />
           <SelfHidingRow title='Total Dough' unit='g' dataTuple={bread_table.total_dough} />
         </table>
@@ -494,7 +498,7 @@ export default function App() {
           <br></br>
           <li> <strong> Why is flour always 100%?:</strong> Bakers use flour as the standard weight to divide the other ingredients against. This means our total flour will always be 100%, and we will always divide by that number. So a bread with 600g of water and 1000g of flour will be 60% hydration. With prefermented doughs, we add a yeasty mixture (starter/biga/poolish) that has its own water-to-flour ratio. This addition to the dough affects our hydration percentage, and needs to be added to our total water and total flour calculation.</li>
         </ul>
-        <h3> A Web App by <a href="http://jclyn.info">Jaclyn Baughman</a> </h3> 
+        <h3> A Web App by <a href="https://www.notion.so/Meet-Jaclyn-3376e41006724ae29445f3733c96c4eb">Jaclyn Baughman</a> </h3> 
       </div>
     );
     }
