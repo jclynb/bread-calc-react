@@ -1,4 +1,4 @@
-export default function sourMath(flour, hydration, preferment, hydroPreferment, amount){
+export default function sourMath(flour, hydration, yeast, preferment, hydroPreferment, amount){
   let preferment_flour = preferment/(1+(hydroPreferment/100))
   let preferment_water = preferment_flour*(hydroPreferment/100) 
 
@@ -23,6 +23,7 @@ export default function sourMath(flour, hydration, preferment, hydroPreferment, 
   //preferment percentages
   let preferment_flour_percent = (preferment_flour/flour_total * 100)
   let preferment_water_percent = (preferment_water/flour_total * 100)
+  let yeast_percent = (yeast/flour_total * 100)
   //water
   let water_percent = (water/flour_total * 100)
   let total_water_percent = (total_water/flour_total * 100)
@@ -32,13 +33,14 @@ export default function sourMath(flour, hydration, preferment, hydroPreferment, 
   //scale//
   if (amount > 1){
   
-  let scale = (amount * total_dough)/(flour_percent + salt_percent + preferment_flour_percent + 
+  let scale = (amount * total_dough)/(flour_percent + salt_percent + preferment_flour_percent + yeast_percent +
                preferment_water_percent + water_percent)
   
-            lour = (scale*flour_percent)
+            flour = (scale*flour_percent)
             flour_total = (scale*total_flour_percent)
             salt = (scale*salt_percent)
-            leaven = (scale*preferment_flour_percent + scale*preferment_water_percent)
+            preferment = (scale*preferment_flour_percent + scale*preferment_water_percent)
+            yeast = (scale*yeast_percent)
             water =  (scale*water_percent)
             total_water =  (scale*total_water_percent)
             total_dough = (scale*total_dough_percent)
@@ -50,6 +52,7 @@ export default function sourMath(flour, hydration, preferment, hydroPreferment, 
                     flour: [flour, flour_percent], 
                     salt: [salt, salt_percent], 
                     preferment: [preferment, preferment_flour_percent],
+                    yeast: [yeast, yeast_percent],
                     water: [water, water_percent],
                     total_dough: [total_dough, total_dough_percent]}
   

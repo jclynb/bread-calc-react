@@ -26,34 +26,28 @@ export default function App() {
     const [water, setWater] = useState(0);
     const [amount, setAmount] = useState(1);
     const [breadtype, setBreadType] = useState(null);
-    const bread_options = ["Enriched", "Lean"];
+    const bread_options = ["Lean", "Enriched"];
     const isEnriched = breadtype === "Enriched";
     const bread_table = isEnriched 
     ? enrichedMath(flour, water, salt, sugar, preferment, hydroPreferment, yeast, milk, egg, yolk, white, butter, oil, amount)
-    :  sourMath(flour, hydration, preferment, hydroPreferment, amount);
+    :  sourMath(flour, hydration, yeast, preferment, hydroPreferment, amount);
 
     return (
-      <div className="App">       
+      <div className="App"> 
+        <h1>🥖🌾🌻🍂✨</h1>      
         <h1>Baker's Percentage Calculator</h1>
-        <img src={crumbs} style={{
-          width: '100%',
-          maxwidth: '500px'
-        }}
-        />
-        <h3> A Web App by <a href="http://jclyn.info">Jaclyn Baughman</a> </h3> 
-        <p> 🍞 Let's make bread! All we need is flour, water, salt, and yeast, plus some arithmetic. To use this calculator, choose how much flour you want to use, your hydration target, and your amount of preferment.</p>
-        <h2>Calculator</h2>
+        <h3>What kind of dough are you making?</h3>
         <div className="input-group">
         <Dropdown
            options={bread_options}
-           placeholder="What kind of dough are you making?"
+           placeholder="Lean for flour/salt/water/yeast, Enriched if adding butter/milk/eggs."
            value={breadtype}
            onChange={(options) => setBreadType(options.value)}
           />
           </div>
 
-
-          <div className="input-group">
+        {breadtype == "Lean" && <>
+        <div className="input-group">
           <label for="flourSlider">Flour (g)</label>
           <input
             id="flourSlider"
@@ -77,7 +71,7 @@ export default function App() {
           />
         </div>
         <div className="input-group">
-          {breadtype == "Lean" && <>
+          <div className="input-group"></div>
           <label for="hydrationSlider">Hydration Percentage</label>
           <input
             id="hydrationSlider"
@@ -99,44 +93,8 @@ export default function App() {
             setHydration(e.target.valueAsNumber);
             }}
           />
-          </>
-        }
-                
         </div>
-        <div className="input-group">
-        <label for="prefermentSlider">Preferment + Hydration (g) (mixture of flour, water,  yeast)</label>
-          <input
-            id="prefermentSlider"
-            type="number"
-            min={0}
-            max={2000}
-            value={preferment}
-            onChange={(e) => {
-              setPreferment(e.target.valueAsNumber);
-            }}
-          />
-          <input
-          id="hydroprefermentRange"
-           type="number"
-           min={0}
-           max={120}
-           placeholder="Hydration"
-           value={hydroPreferment}
-           onChange={(e) => setHydroPreferment(e.target.valueAsNumber)}
-          />
-          <input
-            id="prefermentRange"
-            type="range"
-            min={0}
-            max={1000}
-            value={preferment}
-            onChange={(e) => {
-              setPreferment(e.target.valueAsNumber);
-            }}
-         />
-        </div>
-      
-        {breadtype == "Enriched" && <>
+           
         <div className="input-group">
           <label for="yeastSlider">Active Dry Yeast (g)</label>
           <input
@@ -159,6 +117,120 @@ export default function App() {
             setYeast(e.target.valueAsNumber);
             }}
           />
+        </div>
+        <div className="input-group">
+        <label for="prefermentSlider">Preferment + Hydration (g) (mixture of flour, water,  yeast)</label>
+          <input
+            id="prefermentSlider"
+            type="number"
+            min={0}
+            max={2000}
+            value={preferment}
+            onChange={(e) => {
+              setPreferment(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="hydroprefermentRange"
+           type="number"
+           min={0}
+           max={120}
+           placeholder="%"
+           value={hydroPreferment}
+           onChange={(e) => setHydroPreferment(e.target.valueAsNumber)}
+          />
+          <input
+            id="prefermentRange"
+            type="range"
+            min={0}
+            max={1000}
+            value={preferment}
+            onChange={(e) => {
+              setPreferment(e.target.valueAsNumber);
+            }}
+         />
+        </div>
+        </>
+        }
+      
+        {breadtype == "Enriched" && <>
+        <div className="input-group">
+          <label for="flourSlider">Flour (g)</label>
+          <input
+            id="flourSlider"
+            type="number"
+            min={200}
+            max={1000}
+            value={flour}
+            onChange={(e) => {
+              setFlour(e.target.valueAsNumber);
+             }}
+          />
+          <input
+          id="flourRange"
+          type="range"
+          min={200}
+          max={1000}
+          value={flour}
+          onChange={(e) => {
+            setFlour(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+          <label for="yeastSlider">Active Dry Yeast (g)</label>
+          <input
+            id="yeastSlider"
+            type="number"
+            min={0}
+            max={100}
+            value={yeast}
+            onChange={(e) => {
+              setYeast(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="yeastRange"
+          type="range"
+          min={0}
+          max={100}
+          value={yeast}
+          onChange={(e) => {
+            setYeast(e.target.valueAsNumber);
+            }}
+          />
+        </div>
+        <div className="input-group">
+        <label for="prefermentSlider">Preferment + Hydration (g) (mixture of flour, water,  yeast)</label>
+          <input
+            id="prefermentSlider"
+            type="number"
+            min={0}
+            max={2000}
+            value={preferment}
+            onChange={(e) => {
+              setPreferment(e.target.valueAsNumber);
+            }}
+          />
+          <input
+          id="hydroprefermentRange"
+           type="number"
+           min={0}
+           max={120}
+           placeholder="%"
+           value={hydroPreferment}
+           onChange={(e) => setHydroPreferment(e.target.valueAsNumber)}
+          />
+          <input
+            id="prefermentRange"
+            type="range"
+            min={0}
+            max={1000}
+            value={preferment}
+            onChange={(e) => {
+              setPreferment(e.target.valueAsNumber);
+            }}
+         />
         </div>
         <div className="input-group">
           <label for="milkSlider">Milk (g)</label>
@@ -393,7 +465,7 @@ export default function App() {
           <SelfHidingRow title='Salt' unit='g' dataTuple={bread_table.salt} />
           <SelfHidingRow title='Sugar' unit='g' dataTuple={bread_table.sugar} />
           <SelfHidingRow title='Preferment' unit='g' dataTuple={bread_table.preferment} />
-          <SelfHidingRow title='Yeast' unit='g' dataTuple={bread_table.yeast} />
+          <SelfHidingRow title='Active Dry Yeast' unit='g' dataTuple={bread_table.yeast} />
           <SelfHidingRow title='Milk' unit='g' dataTuple={bread_table.milk} />
           <SelfHidingRow title='Whole Egg' unit='#' dataTuple={bread_table.egg} />
           <SelfHidingRow title='Egg Yolk' unit='#' dataTuple={bread_table.yolk} />
@@ -407,7 +479,7 @@ export default function App() {
           <SelfHidingRow title='Total Dough' unit='g' dataTuple={bread_table.total_dough} />
         </table>
         <ul>
-        <li> The percentage for the leaven/starter/poolish/biga is the amount of flour in the preferment mixture divided by the total flour in the recipe. If you aren't using any, put 0!</li>
+        <li> The percentage for the preferment is the amount of flour in the preferment mixture divided by the total flour in the recipe. If you aren't using any, put 0!</li>
         </ul>
         <h2> Bread Notes </h2>
         <ul>
@@ -420,6 +492,7 @@ export default function App() {
           <br></br>
           <li> <strong> Why is flour always 100%?:</strong> Bakers use flour as the standard weight to divide the other ingredients against. This means our total flour will always be 100%, and we will always divide by that number. So a bread with 600g of water and 1000g of flour will be 60% hydration. With prefermented doughs, we add a yeasty mixture (starter/biga/poolish) that has its own water-to-flour ratio. This addition to the dough affects our hydration percentage, and needs to be added to our total water and total flour calculation.</li>
         </ul>
+        <h3> A Web App by <a href="http://jclyn.info">Jaclyn Baughman</a> </h3> 
       </div>
     );
     }
