@@ -28,6 +28,27 @@ body {
     padding: 0 1em;
 }
 
+.input-group {
+  margin: 0.5em;
+  margin-bottom: 1.5em;
+}
+input[type="range"]{
+  background: gainsboro;
+  height: 3px;
+  margin-top: -5px;
+  display: block;
+  width: 100%;
+ }
+ 
+.input-group label {
+  margin-right: 0.5em;
+}
+.input-group input[type="range"] {
+  display: block;
+  width: 100%;
+  margin: .5em 0;
+}
+
 input[type=range] {
   width: 100%;
   margin: 5.15px 0;
@@ -118,5 +139,6 @@ how to remove the virtical space around the range input in IE*/
     /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
+
 
 
