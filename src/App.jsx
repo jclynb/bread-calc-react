@@ -40,7 +40,7 @@ export default function App() {
         <div className="input-group">
         <Dropdown
            options={bread_options}
-           placeholder="Lean for flour/salt/water/yeast, Enriched if adding butter/milk/eggs."
+           placeholder="Lean for flour, salt, water, yeast, Enriched if adding butter, milk, or eggs."
            value={breadtype}
            onChange={(options) => setBreadType(options.value)}
           />
@@ -119,7 +119,7 @@ export default function App() {
           />
         </div>
         <div className="input-group">
-        <label for="prefermentSlider">Preferment + Hydration (g) (mixture of flour, water,  yeast)</label>
+        <label for="prefermentSlider">Preferment (g) + Hydration (%) (mixture of flour, water,  yeast)</label>
           <input
             id="prefermentSlider"
             type="number"
@@ -130,14 +130,16 @@ export default function App() {
               setPreferment(e.target.valueAsNumber);
             }}
           />
-          <input
-          id="hydroprefermentRange"
-           type="number"
-           min={0}
-           max={120}
-           placeholder="%"
-           value={hydroPreferment}
-           onChange={(e) => setHydroPreferment(e.target.valueAsNumber)}
+            <input
+            id="hydroprefermentSlider"
+            type="number"
+            min={0}
+            max={100}
+            value={hydroPreferment}
+            placeholder='%'
+            onChange={(e) => {
+              setHydroPreferment(e.target.valueAsNumber);
+            }}
           />
           <input
             id="prefermentRange"
@@ -201,7 +203,7 @@ export default function App() {
           />
         </div>
         <div className="input-group">
-        <label for="prefermentSlider">Preferment + Hydration (g) (mixture of flour, water,  yeast)</label>
+        <label for="prefermentSlider">Preferment (g) + Hydration (%) (mixture of flour, water,  yeast)</label>
           <input
             id="prefermentSlider"
             type="number"
@@ -442,7 +444,7 @@ export default function App() {
         </>
         }
         <div className="input-group">
-        <label for="amountRange">Choose the amount of loaves you want to bake</label>
+        <label for="amountRange">Choose the number of loaves you want to bake</label>
         <input
           id="amountRange"
           type="number"

@@ -23,7 +23,6 @@ td:first-child {
 body {
     text-align: left;
     height: 100vh;
-    font-family: 'Courier New',sans-serif;
     max-width: 700px;
     margin: auto;
     padding: 0 1em;
@@ -49,5 +48,6 @@ input[type="range"]{
   width: 100%;
   margin: .5em 0;
 }
+
 
 
