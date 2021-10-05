@@ -7,6 +7,7 @@ import enrichedMath from "./enrichedMath.js";
 import { SelfHidingRow } from "./SelfHidingRow.jsx";
 
 export default function App() {
+  const [toggle, setToggle] = useState(false);
   const [flour, setFlour] = useState(200);
   const [hydration, setHydration] = useState(10);
   const [preferment, setPreferment] = useState(0);
@@ -365,7 +366,7 @@ export default function App() {
               onChange={(e) => {
                 setEgg(e.target.valueAsNumber);
               }}
-              disabled={eggnum>=1}
+              onClick={() => setEggNum(0)}
             />
             <label for="eggnumSlider"> OR (#) of eggs </label>
             <input
@@ -376,6 +377,7 @@ export default function App() {
               placeholder="#"
               value={eggnum}
               onChange={(e) => setEggNum(e.target.valueAsNumber)}
+              onClick={() => setEgg(0)}
             />
             <label for="eggRange"> (assumes weight of 50g/egg) </label>
             <input
@@ -387,7 +389,7 @@ export default function App() {
               onChange={(e) => {
                 setEgg(e.target.valueAsNumber);
               }}
-              disabled={eggnum>=1}
+              onClick={() => setEggNum(0)}
             />
           </div>
           <div className="input-group">
@@ -401,7 +403,7 @@ export default function App() {
               onChange={(e) => {
                 setYolk(e.target.valueAsNumber);
               }}
-              disabled={yolknum>=1}
+              onClick={() => setYolkNum(0)}
             />
             <label for="yolkumSlider"> OR (#) of yolks </label>
             <input
@@ -412,6 +414,7 @@ export default function App() {
               placeholder="#"
               value={yolknum}
               onChange={(e) => setYolkNum(e.target.valueAsNumber)}
+              onClick={() => setYolk(0)}
             />
             <label for="yolkRange"> (assumes weight of 18g/egg yolk) </label>
             <input
@@ -423,7 +426,7 @@ export default function App() {
               onChange={(e) => {
                 setYolk(e.target.valueAsNumber);
               }}
-              disabled={yolknum>=1}
+              onClick={() => setYolkNum(0)}
             />
           </div>
           <div className="input-group">
@@ -437,7 +440,7 @@ export default function App() {
               onChange={(e) => {
                 setWhite(e.target.valueAsNumber);
               }}
-              disabled={whitenum>=1}
+              onClick={() => setWhiteNum(0)}
             />
             <label for="whitenumSlider"> OR (#) egg whites </label>
             <input
@@ -448,6 +451,7 @@ export default function App() {
               placeholder="#"
               value={whitenum}
               onChange={(e) => setWhiteNum(e.target.valueAsNumber)}
+              onClick={() => setWhite(0)}
             />
             <label for="whiteRange"> (assumes weight of 30g/egg white) </label>
             <input
@@ -459,7 +463,7 @@ export default function App() {
               onChange={(e) => {
                 setWhite(e.target.valueAsNumber);
               }}
-              disabled={whitenum>=1}
+              onClick={() => setWhiteNum(0)}
             />
           </div>
           <div className="input-group">
