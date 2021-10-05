@@ -620,7 +620,6 @@ export default function App() {
             </li>
           </ul>
           <h2> Bread Notes </h2>
-          <br></br>
             <details>
               <summary> <strong> Why is dough hydration important?</strong> </summary> 
               <br></br>
