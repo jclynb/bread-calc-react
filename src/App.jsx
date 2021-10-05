@@ -620,51 +620,55 @@ export default function App() {
             </li>
           </ul>
           <h2> Bread Notes </h2>
-          <ul>
-            <li>
-              {" "}
-              <strong>Hydration + flour types:</strong> Whole wheat flour is
-              very absorbant. Rye flours are genearlly less absorbant, but with
-              a wide variety of white/medium/dark rye it's best to learn how
-              your flours affect hydration and fermentaion before incorporating
-              into your breads. Higher ratios of whole wheat to white flour will
-              need closer to 80% hydration. For pure white flour breads, start
-              around 70% and add about 5-10% hydration when starting to
-              incorporate whole wheat.
-            </li>
-            <br></br>
-            <li>
-              {" "}
-              <strong> Hydration outcomes:</strong> The higher the hydration of
-              the dough, the more air bubbles, rise, and chewiness you'll see
-              (though the dough will also be sticky-er and wetter). But add too
-              much water and you'll end up with a soupy mess. Then again, add
+          <br></br>
+            <details>
+              <summary> <strong> Why is dough hydration important?</strong> </summary> 
+              <br></br>
+              The higher the hydration of the dough, the more air bubbles, rise, 
+              and chewiness you'll see (though the dough will also be sticky-er and wetter). 
+              But add too much water and you'll end up with a soupy mess. Then again, add
               too little and you’ll end up with a dense flying saucer... Setting
               your hydration will depend on what kind of end result you're
               looking for and what kind of flours you are using. Having a lower
               hydration means a stiffer and easier to work with dough, which
               might be great for shaping pizza, but may not produce those big
               airy bubbles you typically look for in sourdough.
-            </li>
+            </details>
             <br></br>
-            <li>
-              {" "}
-              <strong> Salt choice:</strong> The default set for salt percentage
-              for lean doughs is 2%. You can add a little over or a little
-              under, but don't stray too far from the 2% mark or you'll end up
-              hurting the yeast activity/rise of your bread (yeasts hate salt!){" "}
-            </li>
+            <details>
+              <summary> <strong>Choosing hydration with flour types</strong> </summary>
+              <br></br>
+              Whole wheat flour is very absorbant. Rye flours are genearlly less 
+              absorbant, but with a wide variety of white/medium/dark rye it's best to learn how
+              your flours affect hydration and fermentaion before incorporating
+              into your breads. Higher ratios of whole wheat to white flour will
+              need closer to 80% hydration. For pure white flour doughs, start
+              around 70% and add about 5-10% hydration when starting to
+              incorporate whole wheat.
+            </details>
             <br></br>
-            <li>
-              <strong>Hydration for eggs and butter:</strong> Hydration for eggs, egg yolks, and egg whites 
+            <details>
+             <summary><strong>Hydration for eggs and butter</strong> </summary> 
+             <br></br>
+              Hydration for eggs, egg yolks, and egg whites 
               is calculated according to this <a href="https://web.extension.illinois.edu/eggs/res16-egg.html"> resource</a>. 
               The assumed hydration percentage for butter is 16%, but this percentage will vary depending on what brand 
               of butter used.
-            </li>
+            </details>
             <br></br>
-            <li>
-              {" "}
-              <strong> Why is flour always 100%?:</strong> Bakers use flour as
+            <details>
+              <summary><strong>Salt in lean doughs</strong> </summary>
+              <br></br>
+              The default set for salt percentage
+              for lean doughs is 2%. You can add a little over or a little
+              under, but don't stray too far from the 2% mark or you'll end up
+              hurting the yeast activity/rise of your bread (yeasts hate salt!){" "}
+            </details>
+            <br></br>
+            <details>
+             <summary> <strong> Why is total flour always 100%?</strong> </summary>
+             <br></br>
+             Bakers use flour as
               the standard weight to divide the other ingredients against. This
               means our total flour will always be 100%, and we will always
               divide by that number. So a bread with 600g of water and 1000g of
@@ -673,14 +677,11 @@ export default function App() {
               water-to-flour ratio. This addition to the dough affects our
               hydration percentage, and needs to be added to our total water and
               total flour calculation.
-            </li>
-          </ul>
+            </details>
+          <br></br>
           <h3>
-            {" "}
-            A web app by{" "}
-            <a href="https://www.notion.so/Meet-Jaclyn-3376e41006724ae29445f3733c96c4eb">
-              Jaclyn Baughman
-            </a>{" "}
+            A web app by <a href="https://www.notion.so/Meet-Jaclyn-3376e41006724ae29445f3733c96c4eb">Jaclyn Baughman
+            </a>
           </h3>
         </>
       )}
