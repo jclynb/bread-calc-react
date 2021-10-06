@@ -7,7 +7,6 @@ import enrichedMath from "./enrichedMath.js";
 import { SelfHidingRow } from "./SelfHidingRow.jsx";
 
 export default function App() {
-  const [toggle, setToggle] = useState(false);
   const [flour, setFlour] = useState(200);
   const [hydration, setHydration] = useState(10);
   const [preferment, setPreferment] = useState(0);
