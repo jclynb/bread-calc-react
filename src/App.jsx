@@ -650,8 +650,9 @@ export default function App() {
              <br></br>
               Hydration for eggs, egg yolks, and egg whites 
               is calculated according to this <a href="https://web.extension.illinois.edu/eggs/res16-egg.html"> resource</a>. 
-              The assumed hydration percentage for butter is 16%, but this percentage will vary depending on what brand 
-              of butter used.
+              The assumed hydration percentage for butter is 17%, but this percentage will vary depending on what brand 
+              of butter used. This <a href="https://www.sfgate.com/recipes/article/When-Put-to-the-Test-Here-s-How-Butter-Brands-3236719.php"> resource</a>
+              shows moisture percentages in butter for different brands.
             </details>
             <br></br>
             <details>

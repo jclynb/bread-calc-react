@@ -24,7 +24,7 @@ export default function enrichedMath(flour, water, salt, sugar, preferment, hydr
   
   let white_hydro = white*0.88 //one egg white is 88% water
   
-  let butter_hydro = butter*0.16 //butter water percentage varies, looking at a range of brands I am starting with 16%
+  let butter_hydro = butter*0.17 //butter water percentage varies, looking at a range of brands I am assuming around 17%
   
   let total_dough = (flour + salt + sugar + water + preferment + yeast + milk + egg + yolk + white + butter + oil)
   let total_water = (water + preferment_water + milk_hydro + egg_hydro + yolk_hydro + white_hydro + butter_hydro)
