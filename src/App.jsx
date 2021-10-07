@@ -54,6 +54,13 @@ export default function App() {
     <div className="App">
       <h1>🥖🌾🌻🍂✨</h1>
       <h1>Baker's Percentage Calculator</h1>
+      <h2>Use this app to:</h2>
+      <ul>
+        <li>Calculate the amount of water needed to reach a desired hydration percentage given an amount of flour and preferment</li>
+        <li>Calculate the total weight of your dough</li>
+        <li>Calculate the hydration percentage in enriched doughs from ingredients such as water, milk, butter, eggs</li>
+        <li>Scale your recipe up if making more than one loaf/dough</li>
+      </ul>
       <h3>What kind of dough are you making?</h3>
       <div className="input-group">
         <Dropdown

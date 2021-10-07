@@ -4,6 +4,10 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+li {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  }
 
 table {
   width: 100%;
